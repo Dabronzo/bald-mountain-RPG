@@ -57,3 +57,27 @@ class Player(Entity):
     
     def get_status(self):
         print(f"Player: {self.name} Health: {self.health}\n")
+
+def main_road():
+    """
+    When called bring the player to the main road where can be decided wher to go next
+    with the three options
+    """
+    print("You are in a main road, you only see three possible ways to proceed. Where you would like to go?\n")
+    print("The Cave -------- to go there type 'C'")
+    print("The Town -------- to go there type 'T'")
+    print("The Mountain ---- to go there type 'M'")
+    
+    direction = input("Type here where to go: \n")
+    if direction == 'C' or direction == 'c':
+        print('Oh no a goblin!!')
+        enemy01 = Enemy('goblin', 'sword', 20)
+        player.take_hit(enemy01.get_enemy_damage())
+
+
+print("Welcome to the Bald Mountain RPG")
+name_player = input("Please enter your name: ")
+
+player = Player(name_player)
+player.get_status()
+main_road()
