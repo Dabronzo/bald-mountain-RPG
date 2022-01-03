@@ -56,8 +56,10 @@ class Player(Entity):
     def get_status(self):
         print(f"Player: {self.name} Health: {self.health}\n")
 
-
-
+# Global Varibles
+visited_tabern = False
+visited_inn = False
+change_inn = False
 
 def validate_yes_no(input):
     """
@@ -73,6 +75,29 @@ def validate_yes_no(input):
     except ValueError:
         print(f"{input} is an invalid answer, try again")
 
+def the_cave_two():
+    """
+    Function for the second part of the cave
+    """
+    global change_inn
+    print('----------------------------------------------------------------')
+    print('You go deeper on the cave you hear more steps aproaching')
+    print('Another goblin appears to attack you!')
+    while True:
+        action = input("Will you fight? type 'Y' or 'N\n")
+        if validate_yes_no(action):
+            break
+    if validate_yes_no(action) == 'yes':
+        if player.inventory.get('sword'):
+            enemy01 = Enemy('goblin', 'sword', 20)
+            while True:
+                if fight(player, enemy01):
+                    break
+            print('The fight is over')
+            change_inn = True
+            main_road()
+
+
 def the_cave_one():
     """
     Function for the first part of the cave
@@ -85,12 +110,19 @@ def the_cave_one():
         if validate_yes_no(action):
             break
     if validate_yes_no(action) == 'yes':
-        enemy01 = Enemy('goblin', 'sword', 20)
-        while True:
-            if fight(player, enemy01):
-                break
-        print('The fight is over')
-        
+        if player.inventory.get('sword'):
+            enemy01 = Enemy('goblin', 'sword', 20)
+            while True:
+                if fight(player, enemy01):
+                    break
+            print('The fight is over')
+            the_cave_two()
+        else:
+            print('----------------------------------------------------------------')
+            print("You don't have a sword to fight!!")
+            print("Going back to the main road")
+            print('----------------------------------------------------------------')
+            main_road()
     else:
         print("you ran away")
 
@@ -108,6 +140,42 @@ def fight(player, enemy):
             break
     return True
 
+def the_inn():
+    """
+    Functions for the events on the Inn scenario
+    """
+    global visited_inn
+    if change_inn:
+        print("Hey, you look tired. I have a room avalible, do you want to take a rest?")
+        while True:
+            action = input("To go back to the Town type 'Y\n")
+            if validate_yes_no(action):
+                break
+        print("Your health is fully restored")
+        player.health = 100       
+    if visited_inn is False:
+        print('----------------------------------------------------------------')
+        print("As you enter at the Inn you see a man at the reception, you aproach and he says:")
+        print("Hello traveler, I shall warn you that we don't have more accommodations")
+        print("Since that beast is at the mountain everybody who lives there flew away...")
+        print("...and now they are here waiting for someone to kill the beast")
+        print("You tell the man that you'll kill the beast")
+        print("He laughts and take something behind his table")
+        print("Then he says: Here you go, at leas take this sword with you...")
+        print('----------------------------------------------------------------')
+        player.add_to_inventory('sword', 30)
+    elif visited_inn and not change_inn:
+        print("Hello again, lost something?")
+    elif visited_inn and change_inn:
+        print("Hey you look better. Good luck today..")
+    while True:
+        print("Seams that you have nothing else to do here...")
+        action = input("To go back to the Town type 'Y\n")
+
+        if validate_yes_no(action):
+            break
+    visited_inn = True
+    the_town()
 
 
 def the_tavern():
@@ -120,15 +188,12 @@ def the_tavern():
 
     while True:
         print("Seams that you have nothing else to do here...")
-        action = input("To go back to the Town type 'Y")
+        action = input("To go back to the Town type 'Y\n")
 
         if validate_yes_no(action):
             break
     the_town()
-
-        
-
-       
+   
 
 def the_town():
     """
@@ -227,7 +292,7 @@ def validate_action_road(action):
         else:
             raise ValueError(f"The input data {action} is not valid!")
     except ValueError:
-        print(f"An error {e} happened due to invalid data, please try again..\n")
+        print("An error happened due to invalid data, please try again..\n")
 
 
 
@@ -250,5 +315,4 @@ name_player = input("Please enter your name: ")
 
 player = Player(name_player)
 player.get_status()
-player.add_to_inventory('sword', 30)
 main_road()
