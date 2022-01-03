@@ -54,7 +54,7 @@ class Player(Entity):
             print("Your inventory is empty!")
     
     def get_status(self):
-        print(f"Player: {self.name} Health: {self.health}\n")
+        print(f"Player: {self.name} total health: {self.health}\n")
 
 # Global Varibles
 visited_tabern = False
@@ -94,6 +94,7 @@ def the_cave_two():
                 if fight(player, enemy01):
                     break
             print('The fight is over')
+            player.get_status()
             change_inn = True
             main_road()
 
@@ -115,7 +116,9 @@ def the_cave_one():
             while True:
                 if fight(player, enemy01):
                     break
+            print('----------------------------------------------------------------')
             print('The fight is over')
+            player.get_status()
             the_cave_two()
         else:
             print('----------------------------------------------------------------')
@@ -239,6 +242,7 @@ def main_road():
     When called bring the player to the main road where can be decided wher to go next
     with the three options
     """
+    print('----------------------------------------------------------------')
     print("You are in a main road, you only see three possible ways to proceed. Where you would like to go?\n")
     print("The Cave -------- to go there type 'C'")
     print("The Village -------- to go there type 'V'")
