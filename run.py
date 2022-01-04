@@ -154,6 +154,31 @@ def the_mountain():
         print("As you walk you hear a grunt aproaching")
         print("Before you can even think about it an enormous Troll aprear!")
         print("You can not run away this time. The fight will begin...")
+        final_fight()
+    else:
+        print('----------------------------------------------------------------')
+        print("You are going back to the main road")
+        main_road()
+
+def final_fight():
+    """
+    Function to handle the final fight of the game
+    """
+    troll = Enemy('troll', 'sword', 20)
+    print('----------------------------------------------------------------')
+    print("The final fight")
+    if player.inventory.get('sword'):
+        while True:
+            if fight(player, troll):
+                break
+        print("You have finished the game")
+
+def game_over():
+    """
+    Function to handle the game over
+    """
+    print('----------------------------------------------------------------')
+    print("Sorry, you have lost the game...")
 
 
 
@@ -165,6 +190,7 @@ def fight(player, enemy):
         player.take_hit(enemy.get_enemy_damage())
         if player.health <= 0:
             print("You are dead. Game Over")
+            game_over()
             break
     return True
 
