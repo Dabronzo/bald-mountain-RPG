@@ -1,3 +1,6 @@
+import json
+
+
 class Entity:
     """
     Base class for all the game entities
@@ -23,18 +26,12 @@ class Enemy(Entity):
             Entity.__init__(self, 'goblin', 40)
         elif self.type == 'troll':
             Entity.__init__(self, 'troll', 100)
-        self.weapons[weapon] = damage
-    
+        self.weapons[weapon] = damage 
     def get_enemy_damage(self):
         return self.weapons.get('sword')
-    
     def __del__(self):
         print(f"The {self.name} is dead")
-
-
-
-
-       
+     
 class Player(Entity):
     """
     Subclass of Entity for the player
@@ -245,27 +242,38 @@ def the_inn():
     the_town()
 
 
+def data_extractor():
+    """
+    Function to open the data file json and return it
+    """
+    with open("data.json") as data:
+        jsonData = json.load(data)
+        data.close()
+        return jsonData
+
 def the_tavern():
     """
     Function to handle the actions inside the tavern at the village
     """
+    print("You are entering the Tavern...")
     global visited_tabern
+    tavern_data = data_extractor()
+    line_dash = tavern_data['division_line']
+    first_sentences = tavern_data['fist_time_tavern']
+    old_man = tavern_data['old_man']
+    torch_text = tavern_data['torch']
+    second_time = tavern_data['second_time_tavern']
     if visited_tabern is False:
-        print('----------------------------------------------------------------')
-        print("At the Tavern")
-        print("There is a old man sitting close to a fire")
-        print("As you aproach him he starts to talk:")
-        print("Old Man: There are evil creatures at the cave, they came after the beast seattle in the mountain")
-        print("Old Man: They like darkness you'll need something to light your way there")
-        print("The old man takes a torch from the wall and give to you...")
-        print('----------------------------------------------------------------')
+        print(line_dash)
+        print(first_sentences)
+        print(old_man)
+        print(torch_text)
+        print(line_dash)
         player.add_to_inventory('torch', 1)
         visited_tabern = True
     else:
-        print('----------------------------------------------------------------')
-        print("At the Tavern")
-        print("There is no one to interact right now")
-        print('----------------------------------------------------------------')
+        print(line_dash)
+        print(second_time)
     while True:
         print("Seams that you have nothing else to do here...")
         action = input("To go back to the Town type 'Y\n")
