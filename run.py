@@ -10,7 +10,7 @@ class Entity:
         self.damage = damage
         self.health -= damage
         print(f"The {self.name} got {self.damage} of damage")
-        print(f"The life now is {self.health}")
+        print(f"The {self.name} health now is {self.health}")
 
 class Enemy(Entity):
     """
@@ -22,11 +22,16 @@ class Enemy(Entity):
         if self.type == 'goblin':
             Entity.__init__(self, 'goblin', 40)
         elif self.type == 'troll':
-            Entity.__init__(self, 'troll', 80)
+            Entity.__init__(self, 'troll', 100)
         self.weapons[weapon] = damage
     
     def get_enemy_damage(self):
         return self.weapons.get('sword')
+    
+    def __del__(self):
+        print(f"The {self.name} is dead")
+
+
 
 
        
@@ -93,7 +98,9 @@ def the_cave_two():
             while True:
                 if fight(player, enemy01):
                     break
+            print('----------------------------------------------------------------')
             print('The fight is over')
+            del enemy01
             player.get_status()
             change_inn = True
             main_road()
@@ -118,6 +125,7 @@ def the_cave_one():
                     break
             print('----------------------------------------------------------------')
             print('The fight is over')
+            del enemy01
             player.get_status()
             the_cave_two()
         else:
@@ -129,17 +137,34 @@ def the_cave_one():
     else:
         print("you ran away")
 
-    
+
+def the_mountain():
+    """
+    Function to process the mountain stage of the game
+    """
+    print('----------------------------------------------------------------')
+    print("You are now on the way to the mountain")
+    print("You see a bunch of dead bodies and a dreadfull feeling about this place")
+    while True:
+        action = input("Do you want to proceed? type 'Y' or 'N'\n")
+        if validate_yes_no(action):
+            break
+    if validate_yes_no(action) == 'yes':
+        print('----------------------------------------------------------------')
+        print("As you walk you hear a grunt aproaching")
+        print("Before you can even think about it an enormous Troll aprear!")
+        print("You can not run away this time. The fight will begin...")
+
+
 
 def fight(player, enemy):
     while True:
         enemy.take_hit(player.get_the_damage())
         if enemy.health <= 0:
-            print("The enemy is dead")
             break
         player.take_hit(enemy.get_enemy_damage())
         if player.health <= 0:
-            print("you are dead!")
+            print("You are dead. Game Over")
             break
     return True
 
@@ -149,28 +174,41 @@ def the_inn():
     """
     global visited_inn
     if change_inn:
+        print('----------------------------------------------------------------')
+        print("At the Inn")
         print("Hey, you look tired. I have a room avalible, do you want to take a rest?")
         while True:
-            action = input("To go back to the Town type 'Y\n")
+            action = input("Do you will take a rest? type 'Y' or 'N'\n")
             if validate_yes_no(action):
                 break
-        print("Your health is fully restored")
-        player.health = 100       
+        if validate_yes_no(action) == 'yes':
+            print("Your health is fully restored")
+            player.health = 100
+        else:
+            print('----------------------------------------------------------------')
+            print("You'll be back on the town")
+            the_town()       
     if visited_inn is False:
         print('----------------------------------------------------------------')
+        print("At the Inn")
         print("As you enter at the Inn you see a man at the reception, you aproach and he says:")
-        print("Hello traveler, I shall warn you that we don't have more accommodations")
-        print("Since that beast is at the mountain everybody who lives there flew away...")
+        print("Inn Keeper: Hello traveler, I shall warn you that we don't have more accommodations")
+        print("Inn Keeper: Since that beast is at the mountain everybody who lives there flew away...")
         print("...and now they are here waiting for someone to kill the beast")
         print("You tell the man that you'll kill the beast")
         print("He laughts and take something behind his table")
-        print("Then he says: Here you go, at leas take this sword with you...")
+        print("Inn Keeper:  Here you go, at leas take this sword with you...\n")
         print('----------------------------------------------------------------')
         player.add_to_inventory('sword', 30)
     elif visited_inn and not change_inn:
-        print("Hello again, lost something?")
+        print('----------------------------------------------------------------')
+        print("At the Inn")
+        print("Inn Keeper: Hello again, lost something?\n")
+        print('----------------------------------------------------------------')
     elif visited_inn and change_inn:
-        print("Hey you look better. Good luck today..")
+        print('----------------------------------------------------------------')
+        print("Inn Keeper: Hey you look better. Good luck today..\n")
+        print('----------------------------------------------------------------')
     while True:
         print("Seams that you have nothing else to do here...")
         action = input("To go back to the Town type 'Y\n")
@@ -182,13 +220,26 @@ def the_inn():
 
 
 def the_tavern():
-    print('----------------------------------------------------------------')
-    print("You are now inside the tavern")
-    print("There is a old man sitting close to a fire")
-    print("As you aproach him he starts to talk and tells you about the danger in the mountain")
-    print("You tell him that you fear nothing, the old man than gives you a torch so you can light it up when the way is dark")
-    player.add_to_inventory('torch', 1)
-
+    """
+    Function to handle the actions inside the tavern at the village
+    """
+    global visited_tabern
+    if visited_tabern is False:
+        print('----------------------------------------------------------------')
+        print("At the Tavern")
+        print("There is a old man sitting close to a fire")
+        print("As you aproach him he starts to talk:")
+        print("Old Man: There are evil creatures at the cave, they came after the beast seattle in the mountain")
+        print("Old Man: They like darkness you'll need something to light your way there")
+        print("The old man takes a torch from the wall and give to you...")
+        print('----------------------------------------------------------------')
+        player.add_to_inventory('torch', 1)
+        visited_tabern = True
+    else:
+        print('----------------------------------------------------------------')
+        print("At the Tavern")
+        print("There is no one to interact right now")
+        print('----------------------------------------------------------------')
     while True:
         print("Seams that you have nothing else to do here...")
         action = input("To go back to the Town type 'Y\n")
