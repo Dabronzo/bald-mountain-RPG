@@ -21,7 +21,6 @@ class Entity:
         print(f"The {self.name} health now is {self.health}")
 
 
-
 class Enemy(Entity):
     """
     Subclass of Entity for all the enemies of the game
