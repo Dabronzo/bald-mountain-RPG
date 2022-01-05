@@ -21,6 +21,7 @@ class Entity:
         print(f"The {self.name} health now is {self.health}")
 
 
+
 class Enemy(Entity):
     """
     Subclass of Entity for all the enemies of the game
@@ -106,10 +107,13 @@ def the_cave_two():
                     break
             print(dash_line)
             print('The fight is over')
-            del enemy01
-            player.get_status()
-            change_inn = True
-            main_road()
+            if enemy01.health <= 0:
+                del enemy01
+                player.get_status()
+                change_inn = True
+                main_road()
+            else:
+                game_over()
 
 
 def the_cave_one():
@@ -133,9 +137,12 @@ def the_cave_one():
                     break
             print(dash_line)
             print('The fight is over')
-            del enemy01
-            player.get_status()
-            the_cave_two()
+            if enemy01.health <= 0:
+                del enemy01
+                player.get_status()
+                the_cave_two()
+            else:
+                game_over()
         else:
             print(dash_line)
             print("You don't have a sword to fight!!")
@@ -175,14 +182,22 @@ def final_fight():
     """
     Function to handle the final fight of the game
     """
+    data = data_extractor()
+    dash_line = data["division_line"]
+
+    input("Press any key to continue...\n")
+
     troll = Enemy('troll', 'sword', 20)
-    print('----------------------------------------------------------------')
+    print(dash_line)
     print("The final fight")
     if player.inventory.get('sword'):
         while True:
             if fight(player, troll):
                 break
-        print("You have finished the game")
+    else:
+        print("You didn't have a sword")
+        print("The Troll easily killed you")
+        game_over()
 
 
 def game_over():
@@ -200,8 +215,6 @@ def fight(player, enemy):
             break
         player.take_hit(enemy.get_enemy_damage())
         if player.health <= 0:
-            print("You are dead. Game Over")
-            game_over()
             break
     return True
 
@@ -234,24 +247,20 @@ def the_inn():
             print("You'll be back on the town")
             the_town()
     if visited_inn is False:
-        print(dash_line)
         print(first_time)
         print(inn_keeper)
         player.add_to_inventory('sword', 30)
-    elif visited_inn and not change_inn:
         print(dash_line)
+    elif visited_inn and not change_inn:
         print(second_time)
         print(dash_line)
     elif visited_inn and change_inn:
-        print(dash_line)
         print(third_time)
         print(dash_line)
     while True:
         print("Seams that you have nothing else to do here...")
-        action = input("To go back to the Town type 'Y\n")
-
-        if validate_yes_no(action):
-            break
+        input("Press any key to go back to the village center\n")
+        break
     visited_inn = True
     the_town()
 
@@ -284,18 +293,16 @@ def the_tavern():
         print(first_sentences)
         print(old_man)
         print(torch_text)
-        print(line_dash)
         player.add_to_inventory('torch', 1)
+        print(line_dash)
         visited_tabern = True
     else:
-        print(line_dash)
         print(second_time)
+        print(line_dash)
     while True:
-        print("Seams that you have nothing else to do here...")
-        action = input("To go back to the Town type 'Y\n")
-
-        if validate_yes_no(action):
-            break
+        print("Seams that you have nothing else to do here...\n")
+        input("Press any key to left go back to the village center\n")
+        break
     the_town()
 
 
