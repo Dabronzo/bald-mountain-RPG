@@ -184,7 +184,7 @@ def final_fight():
     data = data_extractor()
     dash_line = data["division_line"]
 
-    input("Press any key to continue...\n")
+    input("Enter any key to continue...\n")
 
     troll = Enemy('troll', 'sword', 20)
     print(dash_line)
@@ -425,6 +425,24 @@ def validate_action_road(action):
     except ValueError:
         print("An error happened due to invalid data, please try again..\n")
 
+def start_game():
+    """
+    Start game function that will print the introduction of the game
+    and calls the main_road function.
+    """
+    history = data_extractor()
+    greetings = history["game_greetings"]
+    prologue = history["game_prologue"]
+    dash_line = history["division_line"]
+    
+    print(dash_line)
+    print(greetings)
+    print(dash_line)
+    print(prologue)
+    action = input("Enter any key to continue...\n")
+    if action is not None:
+        main_road()
+
 
 def action_handler_road(action):
     """
@@ -438,9 +456,9 @@ def action_handler_road(action):
         the_mountain()
 
 
-print("Welcome to the Bald Mountain RPG")
-name_player = input("Please enter your name: ")
+name_player = input("To start the game please enter your name: ")
 
 player = Player(name_player)
 player.get_status()
-main_road()
+start_game()
+

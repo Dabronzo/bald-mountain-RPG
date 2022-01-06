@@ -21,5 +21,7 @@
     "village_option":"The Village -------- to go there type 'V'",
     "mountain_option":"The Mountain ---- to go there type 'M'",
     "cave_first":"As you enter the cave you notice an creature aproaching. \nIt's a goblin, and it's going to attack you",
-    "cave_second":"You go deeper on the cave you hear more steps aproaching. \nAnother goblin appears to attack you!"
+    "cave_second":"You go deeper on the cave you hear more steps aproaching. \nAnother goblin appears to attack you!",
+    "game_greetings":"Welcome to the Bald Mountain, a terminal, comand-line RPG developed using Python. \nEnter your name to start the game.",
+    "game_prologue":"Tired after spending a long day traveling you decide to set a camp \nclose to a mountain known as the Bald Mountain. \nYou wake up in the middle of the night hearing screams from the forest. \n "
 }

@@ -13,6 +13,10 @@ Bald Mountain is a small RPG made in Python to run in a terminal. I was inspired
 - **JSON**
 - **Heroku** for deployment
 
+## Flowchart
+
+![flowchart](/docs/rpg_flowchart.png)
+'*' the two stages(functions) "main road" and "village" appears twice on the flowchart just for better display, on the code the flow will bring the player back to the same functions main road and village.
 ## Features
 ### Open World
 The idea is to bring a sense of open world where the player decides where to go at any time. Some places have an trigger event that will change a behaviour of an NPC on the game but the main idea is the player free to make the decision to where go first.
