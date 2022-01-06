@@ -88,7 +88,6 @@ def the_cave_two():
     """
     Function for the second part of the cave
     """
-    global change_inn
     cave_two_data = data_extractor()
     main_text = cave_two_data["cave_second"]
     dash_line = cave_two_data["division_line"]
@@ -109,11 +108,29 @@ def the_cave_two():
             if enemy01.health <= 0:
                 del enemy01
                 player.get_status()
-                change_inn = True
-                main_road()
+                cave_finished()
             else:
                 game_over()
 
+def cave_finished():
+    """
+    Function that prints message when the cave is finished and change
+    the varible that will make the inn have another option
+    """
+    global change_inn
+    data_text = data_extractor()
+    dash_line = data_text["division_line"]
+    cave_final = data_text["cave_finished"]
+    
+    change_inn = True
+    print(dash_line)
+    print("\n")
+    print(cave_final)
+    print("\n")
+
+    action = input("Enter any key to continue:\n")
+    if action is not None:
+        main_road()
 
 def the_cave_one():
     """
@@ -462,8 +479,4 @@ name_player = input("To start the game please enter your name: ")
 
 player = Player(name_player)
 player.get_status()
-player.add_to_inventory('sword', 40)
 start_game()
-
-
-
