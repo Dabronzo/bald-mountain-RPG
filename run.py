@@ -136,6 +136,7 @@ def cave_finished():
     print("\n")
     print(cave_final)
     print("\n")
+    player.add_to_inventory('armor', 20)
 
     action = input("Enter any key to continue:\n")
     if action is not None:
@@ -212,7 +213,7 @@ def final_fight():
 
     input("Enter any key to continue...\n")
 
-    troll = Enemy('troll', 'sword', 50)
+    troll = Enemy('troll', 'sword', 40)
     print(dash_line)
     print('\n')
     print("The final fight")
@@ -236,7 +237,10 @@ def end_game():
     """
     print('----------------------------------------------------------------')
     print('\n')
-    print("Congratulations you have killed the Troll. Bald Mountain is free again. The mess that the troll and the goblins left behind is huge but now all the mountain folks can at least hope for a better future while reconstructing their homes and lives.\n")
+    print("Congratulations, you have killed the Troll.")
+    print("Bald Mountain is free again. The mess that the troll and the goblins")
+    print("left behind is huge but now all the mountain folks can at least hope for") 
+    print("a better future while reconstructing their homes and lives.\n")
     print('----------------------------------------------------------------')
 
 
@@ -514,10 +518,6 @@ name_player = input("To start the game please enter your name: ")
 
 player = Player(name_player)
 player.get_status()
-#start_game()
-
-player.add_to_inventory('sword', 30)
+start_game()
 
 
-
-final_fight()

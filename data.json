@@ -24,5 +24,5 @@
     "cave_second":"You go deeper on the cave you hear more steps aproaching. \nAnother goblin appears to attack you!\n",
     "game_greetings":"Welcome to the Bald Mountain, a terminal-comand-line RPG developed using Python.\n",
     "game_prologue":"Tired after spending a long day traveling you decide to set a camp \nclose to a mountain known as the Bald Mountain. \nYou wake up in the middle of the night hearing screams from the forest. \n ",
-    "cave_finished":"Congratulations, you have cleaned the cave from the goblins! \nYou find a beg with 100 gold!"
+    "cave_finished":"Congratulations, you have cleaned the cave from the goblins! \nYou found an armor."
 }
