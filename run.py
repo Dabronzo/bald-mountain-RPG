@@ -17,8 +17,8 @@ class Entity:
     def take_hit(self, damage):
         self.damage = damage
         self.health -= damage
-        print(f"The {self.name} got {self.damage} of damage")
-        print(f"The {self.name} health now is {self.health}")
+        print(f"{self.name} got {self.damage} of damage")
+        print(f"{self.name} health now is {self.health}")
 
 
 class Enemy(Entity):
@@ -208,9 +208,11 @@ def game_over():
 
 def fight(player, enemy):
     while True:
+        print(f"{player.name} attacks {enemy.name}")
         enemy.take_hit(player.get_the_damage())
         if enemy.health <= 0:
             break
+        print(f"{enemy.name} attacks {player.name}")
         player.take_hit(enemy.get_enemy_damage())
         if player.health <= 0:
             break
@@ -460,5 +462,9 @@ name_player = input("To start the game please enter your name: ")
 
 player = Player(name_player)
 player.get_status()
-start_game()
+player.add_to_inventory('sword', 40)
+#start_game()
+
+enemy = Enemy('troll', 'sword', 20)
+fight(player, enemy)
 
