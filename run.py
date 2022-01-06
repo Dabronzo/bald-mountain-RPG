@@ -4,6 +4,7 @@ import json
 visited_tabern = False
 visited_inn = False
 change_inn = False
+data_json = None
 
 
 class Entity:
@@ -261,6 +262,7 @@ def game_over():
 
 
 def fight(player, enemy):
+    print("Starting the fight...")
     while True:
         print(f"{player.name} attacks {enemy.name}")
         enemy.take_hit(player.get_the_damage())
@@ -327,10 +329,14 @@ def data_extractor():
     """
     Function to open the data file json and return it
     """
-    with open("data.json") as data:
-        json_data = json.load(data)
-        data.close()
-        return json_data
+    global data_json
+    if data_json is not None:
+        return data_json
+    else:
+        with open("data.json") as data:
+            json_data = json.load(data)
+            data.close()
+            return json_data
 
 
 def the_tavern():
@@ -338,6 +344,7 @@ def the_tavern():
     Function to handle the actions inside the tavern at the village
     """
     global visited_tabern
+
     tavern_data = data_extractor()
     line_dash = tavern_data['division_line']
     first_sentences = tavern_data['fist_time_tavern']
