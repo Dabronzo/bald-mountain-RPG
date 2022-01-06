@@ -285,17 +285,20 @@ def the_inn():
     second_time = inn_data["second_inn"]
     third_time = inn_data["third_inn"]
     dash_line = inn_data["division_line"]
+    inn_after = inn_data["after_rest_inn"]
     print(dash_line)
     print("...The Inn...\n")
     if change_inn:
-        print(dash_line)
         print(third_time)
         while True:
             action = input("Do you will take a rest? type 'Y' or 'N'\n")
             if validate_yes_no(action):
                 break
         if validate_yes_no(action) == 'yes':
-            print("Your health is fully restored")
+            print(dash_line)
+            print(" ")
+            print("After some hours...\n")
+            print("Your health is fully restored.\n")
             player.health = 100
         else:
             print(dash_line)
@@ -310,8 +313,8 @@ def the_inn():
         print(second_time)
         print(dash_line)
     elif visited_inn and change_inn:
-        print(third_time)
-        print(dash_line)
+        print(inn_after)
+        print(" ")
     while True:
         print("Seams that you have nothing else to do here...")
         input("Press any key to go back to the village center\n")
@@ -394,6 +397,7 @@ def the_cave():
     cave_entrance = cave_data["cave_entrance"]
     proceed = cave_data["proceed_yes_no"]
     print(dash_line)
+    print(' ')
     print(cave_entrance)
     action = input(proceed)
     if action == 'Y' or action == 'y':
