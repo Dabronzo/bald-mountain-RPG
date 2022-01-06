@@ -54,7 +54,7 @@ class Player(Entity):
 
     def add_to_inventory(self, item, damage):
         self.inventory[item] = damage
-        print(f"an {item} was added to yout inventory\n")
+        print(f"***A {item} was added to yout inventory***\n")
 
     def get_the_damage(self):
         if len(self.inventory) != 0:
@@ -347,8 +347,8 @@ def the_cave():
             the_cave_one()
         else:
             print(dash_line)
-            print('you can not porceed without a torch')
-            print('Going back to the main road...\n')
+            print('You can not porceed without a torch.\n')
+            print('Going back to the main road...')
             main_road()
     else:
         print('Going back to the main road...\n')
@@ -368,6 +368,7 @@ def main_road():
     option_mountain = road_data["mountain_option"]
 
     print(dash_line)
+    print("...Main Road...\n")
     print(entrance)
     print(option_cave)
     print(option_village)
@@ -437,8 +438,8 @@ def start_game():
     
     print(dash_line)
     print(greetings)
-    print(dash_line)
     print(prologue)
+    print(dash_line)
     action = input("Enter any key to continue...\n")
     if action is not None:
         main_road()

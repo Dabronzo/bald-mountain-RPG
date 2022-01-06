@@ -2,7 +2,10 @@
 
 Bald Mountain is a small RPG made in Python to run in a terminal. I was inspired on the first generation of RPG games for computers where the player needed to type the decisions and actions on the screen to move on the game. The lack of any graphic or animation force the player to use the imagination as reads the outcomes on the screen.
 
-### Live version of the sofware
+## Deployment
+To deployment of the live version was used **Heroku** linked to the repository in **GitHub**
+### Current live version of the game: [Bald Mountain RPG](https://bald-mountain-rpg.herokuapp.com/)
+
 
 
 ## How to Play
