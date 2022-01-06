@@ -463,8 +463,7 @@ name_player = input("To start the game please enter your name: ")
 player = Player(name_player)
 player.get_status()
 player.add_to_inventory('sword', 40)
-#start_game()
+start_game()
 
-enemy = Enemy('troll', 'sword', 20)
-fight(player, enemy)
+
 
