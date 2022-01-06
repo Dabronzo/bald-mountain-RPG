@@ -122,7 +122,6 @@ def the_cave_one():
     cave_one_data = data_extractor()
     entrance = cave_one_data["cave_first"]
     dash_line = cave_one_data["division_line"]
-    print(dash_line)
     print(entrance)
     while True:
         action = input("Will you fight? type 'Y' or 'N\n")
@@ -315,8 +314,8 @@ def the_town():
     option_tavern = town_data["tavern_option"]
     option_inn = town_data["inn_option"]
     option_exit = town_data["exit_option"]
-    print("You are now at the Village")
     print(dash_line)
+    print("You are now at the village.\n")
     print(main_message)
     print(option_tavern)
     print(option_inn)
@@ -343,7 +342,7 @@ def the_cave():
     if action == 'Y' or action == 'y':
         if(player.inventory.get('torch')):
             print(dash_line)
-            print('you are entering the cave')
+            print('you are entering the cave\n')
             the_cave_one()
         else:
             print(dash_line)
