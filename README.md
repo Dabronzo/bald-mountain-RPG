@@ -4,7 +4,35 @@ Bald Mountain is a small RPG made in Python to run in a terminal. I was inspired
 
 ### Current live version of the game: [Bald Mountain RPG](https://bald-mountain-rpg.herokuapp.com/)
 
-## Live Version Exemple:
+## Table of Content
+1. [**How to Play**](#how-to-play)
+
+2. [**Technology Used**](#technology-used)
+
+3. [**Flowchart**](#flowchart)
+
+4. [**Features**](#features)
+    * [**Open World**](#open-world)
+    * [**Fight System**](#fight-system)
+    * [**Non-Player Characters (NPC)**](#non-player-characters-npc)
+    * [**User Inputs and Decisions**](#user-inputs-and-decisions)
+    * [**Concept of Visited Areas**](#concept-of-visited-areas)
+    * [**Inventory System**](#inventory-system)
+
+5. [**Future Features**](#future-features)
+
+6. [**Development**](#development)
+
+7. [**Testing**](#testing)
+
+8. [**Bugs**](#bugs)
+
+9. [**Deployment**](#deployment)
+
+10. [**Credits**](#credits)
+
+
+## Live Version Exemple
 
 ![layout](/docs/lay_out.png)
 
@@ -12,7 +40,7 @@ Bald Mountain is a small RPG made in Python to run in a terminal. I was inspired
 ## How to Play
  The game starts asking your name then all your options are printed on the screen as you take decisions. You start in a main road that is close to the Bald Mountain, you have three places to go: the mountain, the village and the cave. To do it so the player need to type a letter that correspond to the place to go. Some characters may give the player items that will be stored in your inventory, some places require an item to allow the player to go.  The fight happens automatically, the player always attack first and then the enemy attacks, repeating until the enemy or player dies. After every fight if the player survives the status of the player’s health is printed on the screen. The main objective of the player is killing all the creatures that are spreading fear and death to the mountain.
 
-## Tecnology Used
+## Technology Used
 - **Python** 
   - The language used to write the game
 - **JSON**
@@ -115,8 +143,8 @@ The game has been teste manually during all the development process on the local
 ## Bugs
 - During the develpment was noticed that even if the player dies at the final battle the troll also would die. At this point the player was getting confusing messages about if the battle was won or not. The problem was inside of the class enemy, I’ve created a method that used to destroy the object and print a message. This way when in the fight is over if the enemy health is zero or less the method is called, and the object is destroyed, and the message printed. When the player dies the game stops and the enemy type troll is destroyed by that, python destroy the object and because the class has the del method the game was printing the messages. To fix that was added an if statement that checks if the enemy type is troll, being true no message should be printed.
 
-## Unsolved Bugs
-- There are no current unsolved bugs noticed
+- ### Unsolved Bugs
+  - There are no current unsolved bugs noticed
 
 
 ## Deployment
