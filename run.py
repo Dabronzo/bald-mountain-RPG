@@ -81,6 +81,7 @@ class Player(Entity):
 def validate_yes_no(input):
     """
     Function to validate the user input as yes or no type
+    return a strin "yes" or "no"
     """
     try:
         if input == 'y' or input == 'Y':
@@ -98,6 +99,9 @@ def validate_yes_no(input):
 def the_cave_two():
     """
     Function for the second part of the cave
+    Check if the player will fight and call it
+    Create the enemy
+    Call the function game_over, cave_finished
     """
     cave_two_data = data_extractor()
     main_text = cave_two_data["cave_second"]
@@ -149,6 +153,9 @@ def cave_finished():
 def the_cave_one():
     """
     Function for the first part of the cave
+    Check if the player will fight
+    Create enemy
+    Call game_over, and transfer to the_cave_two
     """
     cave_one_data = data_extractor()
     entrance = cave_one_data["cave_first"]
@@ -185,6 +192,8 @@ def the_cave_one():
 def the_mountain():
     """
     Function to process the mountain stage of the game
+    Check if the player will proceed
+    Call the final_fight, game_over and back to main_road
     """
     mountain_data = data_extractor()
     first_part = mountain_data["mountain_begin"]
@@ -212,6 +221,8 @@ def the_mountain():
 def final_fight():
     """
     Function to handle the final fight of the game
+    Create the troll, check if the player has a sword
+    calls end_game and game_over 
     """
     data = data_extractor()
     dash_line = data["division_line"]
@@ -271,6 +282,10 @@ def game_over():
 
 
 def fight(player, enemy):
+    """
+    Function that handles the fight on game
+    Return true when the fight is done
+    """
     print("Starting the fight...")
     while True:
         print(f"{player.name} attacks {enemy.name}")
@@ -288,6 +303,8 @@ def fight(player, enemy):
 def the_inn():
     """
     Functions for the events on the Inn scenario
+    Display the messages, and verify if the player activated
+    triggers for new messages
     """
     global visited_inn
     inn_data = data_extractor()
@@ -337,6 +354,7 @@ def the_inn():
 def data_extractor():
     """
     Function to open the data file json and return it
+    Check if the file exists
     """
     global data_json
     if data_json is not None:
@@ -356,6 +374,8 @@ def data_extractor():
 def the_tavern():
     """
     Function to handle the actions inside the tavern at the village
+    Display the messages, and verify if the player activated
+    triggers for new messages
     """
     global visited_tabern
 
@@ -388,6 +408,7 @@ def the_tavern():
 def the_town():
     """
     Functions that runs the town scenario
+    Hold the optios to other scenarios
     """
     town_data = data_extractor()
     dash_line = town_data["division_line"]
@@ -412,6 +433,8 @@ def the_town():
 def the_cave():
     """
     Function that runs the cave senario
+    Check if player has a torch and calls the next
+    cave function
     """
     cave_data = data_extractor()
     dash_line = cave_data["division_line"]
@@ -551,6 +574,7 @@ def action_handler_road(action):
 print("*******\n")
 print("**** Bald Mountain RPG ******\n")
 print("*******\n")
+# Loop to verify if the user input is not empty
 while True:
     name_player = input("To start the game please enter your name: ")
     if name_player:
@@ -558,7 +582,7 @@ while True:
     else:
         print(" ")
         print("You need to enter a name to start the game.\n")
-
+# Create the player as a global varible and calls start_game()
 player = Player(name_player)
 player.get_status()
 start_game()
