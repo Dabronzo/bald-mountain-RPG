@@ -342,7 +342,7 @@ def data_extractor():
     if data_json is not None:
         return data_json
     else:
-        with open("data.json") as data:
+        with open("data/data.json") as data:
             json_data = json.load(data)
             data.close()
             return json_data
