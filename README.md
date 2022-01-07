@@ -2,10 +2,7 @@
 
 Bald Mountain is a small RPG made in Python to run in a terminal. I was inspired on the first generation of RPG games for computers where the player needed to type the decisions and actions on the screen to move on the game. The lack of any graphic or animation force the player to use the imagination as reads the outcomes on the screen.
 
-## Deployment
-To deployment of the live version was used **Heroku** linked to the repository in **GitHub**
 ### Current live version of the game: [Bald Mountain RPG](https://bald-mountain-rpg.herokuapp.com/)
-
 
 
 ## How to Play
@@ -13,56 +10,70 @@ To deployment of the live version was used **Heroku** linked to the repository i
 
 ## Tecnology Used
 - **Python** 
+  - The language used to write the game
 - **JSON**
-- **Heroku** for deployment
+  - Used as data files
+- **Heroku**
+  - Used for the deployment of the live version
+- **GitHub**
+  - Where the project repository is located
+- **GitPod**
+  - Used to write and develop the game as IDE
+- **External Content**
+  - **Node.JS**
+  - Used the Dockstring template provided by the **Code Institute**
+
 
 ## Flowchart
 
 ![flowchart](/docs/rpg_flowchart.png)
 '*' the two stages(functions) "main road" and "village" appears twice on the flowchart just for better display, on the code the flow will bring the player back to the same functions main road and village.
 ## Features
+![start game](/docs/game_start.png)
+
 ### Open World
 The idea is to bring a sense of open world where the player decides where to go at any time. Some places have an trigger event that will change a behaviour of an NPC on the game but the main idea is the player free to make the decision to where go first.
+
 ### Fight System
 The fighting system of the game is quite peculiar, when the fight starts the player gives the first strike and the enemy deals with the damage, this repeats until one of the fighter’s health drops equal or bellow zero. That means all the fights are until death so if the player loses is game over. All the stages of the fight are displayed on the screen so the player can see how was the fight log, and the player status is printed after the fight to let the user know how much the character still have on health.
-### Enemies and NPC
+![fight](/docs/fight_sys.png)
+
+### Non-Player Characters (NPC)
 There are two types of enemies on the game: Goblins, are located on the cave, they have a total health of 40 and a sword that deals 20 of damage. The Troll is the boss of the game, and can be located on the mountain, he has a total health of 100 and also a sword that deals 20 of damage. The player will listen two NPCs, an old man in the tavern that will give the player an torch and the inn keeper that will help the player with a sword.
+
 ### User Inputs and Decisions
 - All the player interactions are made through input on the terminal, sometimes the game will provide a few options and the respective letters to them.
-
-Image options
+![open World](/docs/open_world_one.png)
 
 - Other times will be a simple yes or no input
+![yes or no](/docs/yes_no.png)
 
-Image yes or no
-
-- In order give time to the user read and take process the information that the game prints some inputs were there is no decision it’s just to type any key to the game continue.
-
-Image any key
+- In order give time to the user read and take process the information that the game prints some inputs were there is no decision it’s just to type any key to continue.
+![any key](/docs/any_key.png)
 
 - All the input passes for a validation where if the input does not match one of the options will keep the game in the loop asking for the correct input until is done.
+![wrong](/docs/wrong_input.png)
 
-Image Wrong inputs
 
 ### Concept of Visited Areas
 The game has a logic system that can track if the player has already visited some area, this is made to avoid a few bugs and possible inconsistency on the story. If you have been on the tavern before the old man will not be there anymore and you’ll not get another torch, the same logic will happen on the inn.
 
-Image on the Inn for the second time
+![visited inn](/docs/second_inn.png)
 
-The real thing on this game is that you cannot defeat the troll at once. After the fight on the cave the player will have only 60 of health and needs to fight the troll that has it full, 100, if the fight happens now the player will die. However, if the player goes back to the inn after finishing the cave the NPC there will say that there is a room available to the player take a rest. After the rest the player will have the health restored to 100 and now will be able to fight and win the troll.
+The real thing on this game is that you cannot defeat the troll at once. To do it so the player needs to finish the cave part and get an armour. The armour will make the player take less damage; however, the player health will be way too low to kill the troll. The way out is if the player goes back to the Inn after completed the cave and will be offered to take a rest. By doing it the player’s health will be restored so now the final fight will end with a victory.  
 
 ### Inventory System
 The player subclass has a dictionary that works as inventory. This allow the game to run the fight, once that the weapons and damages information are stored there, the game will search for specific items on the player’s inventory to allow enter in some places or even initiate a fight. 
 
-The items are automatically added to the player inventory along the game.
+**The items are automatically added to the player inventory along the game.**
+![inventory](/docs/inventory.png)
 
-Image of something being add to the inventory 
 
 
 ## Future Features
 - More enemies and places to the player go
 - More items and functionalities
-- A shield and armour system
+- A shield and block attack system
 - Allow the player to see the inventory
 
 ## Development 
@@ -92,11 +103,19 @@ Is called when the player defeats the Troll and finish the game, prints a final 
 The game has been teste manually during all the development process on the local terminal and also on the Heroku hosting.
 - Passed the code through a PEP8 linter and no issues were found
   - Pep8online website for testing http://pep8online.com/
-- Invalid inputs will be handled in game within a loop until the validate function return true.
 
 ## Bugs
 
 ## Unsolved Bugs
+
+## Deployment
+This project is deployed on **Heroku** using the **Code Institute's** mock terminal
+- ### How to deploy
+  - Fork or clone this repository
+  - Using **Heroku** create a new app
+  - Set the buildpacks tp **Python** and **Node.js** in this order
+  - Link **Heroku** to the forked or cloned repository
+  - Deploy 
 
 
 
