@@ -342,10 +342,15 @@ def data_extractor():
     if data_json is not None:
         return data_json
     else:
-        with open("data/data.json") as data:
-            data_json = json.load(data)
-            data.close()
-            return data_json
+        try:
+            with open("data/data.json") as data:
+                data_json = json.load(data)
+                data.close()
+                return data_json
+        except FileNotFoundError:
+            print("An error occurred")
+            print("The data file was not found")
+            print("The software will stop now\n")
 
 
 def the_tavern():
