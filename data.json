@@ -24,6 +24,11 @@
     "cave_first":"As you enter the cave you notice an creature aproaching. \nIt's a goblin, and it's going to attack you.\n",
     "cave_second":"You go deeper on the cave you hear more steps aproaching. \nAnother goblin appears to attack you!\n",
     "game_greetings":"Welcome to the Bald Mountain, a terminal-comand-line RPG developed using Python.\n",
-    "game_prologue":"Tired after spending a long day traveling you decide to set a camp \nclose to a mountain known as the Bald Mountain. \nYou wake up in the middle of the night hearing screams from the forest. \n ",
-    "cave_finished":"As you pulls out your sword from the goblin's skull \nyou notice a bag with somthing shinig inside. \nYour eyes can not believe, it's a brand new armor suit."
+    "game_prologue":"Tired after spending a long day traveling you decide to set a camp \nclose to a mountain known as the Bald Mountain. \nIf the rumours are true, you are in the right place. \n ",
+    "cave_finished":"As you pulls out your sword from the goblin's skull \nyou notice a bag with somthing shinig inside. \nYour eyes can not believe, it's a brand new armor suit.",
+    "game_over":"You are exhausted and cannot sustain more strikes from the Troll. \nEventualy the creature hits you with his massive sword. \nYou cannot move anymore and you feel the heat of your body. \ndraining out in a puddle of blood.",
+    "end_game":"You are covered in blood but the Troll is dead. \nBald Mountain is free again. \nA big mess was left by the troll and goblins. \nAt least now all the mountain folks can at least hope for \na better future while reconstructing their homes and lives.",
+    "prologue_part_two":"You follow the screams that leads to a small farm. The scene made my stomach churn.\nEverything is plunged and the remains of the farmers are all over the place. \nYou know what kind of creature would do that, your search is about to end.\n",
+    "prologue_final":"It’s a shame that you don’t have any weapon right now.\n",
+    "credits":"Thank you so much for play this game. \nDeveloped by: Ayrton D'Abronzo Neto."
 }

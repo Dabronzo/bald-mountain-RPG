@@ -90,7 +90,9 @@ def validate_yes_no(input):
         else:
             raise ValueError("Invalid input.. must be an 'N' or 'n'")
     except ValueError:
-        print(f"{input} is an invalid answer, try again")
+        print("--------------------------------------------------")
+        print(" ")
+        print(f"Sorry, {input} is an invalid answer, try again. \n")
 
 
 def the_cave_two():
@@ -134,9 +136,9 @@ def cave_finished():
     
     change_inn = True
     print(dash_line)
-    print("\n")
+    print(" ")
     print(cave_final)
-    print("\n")
+    print(" ")
     player.add_to_inventory('armor', 20)
 
     action = input("Enter any key to continue:\n")
@@ -189,7 +191,8 @@ def the_mountain():
     middle_part = mountain_data["mountain_middle"]
     dash_line = mountain_data["division_line"]
     print(dash_line)
-    print("You are now on the way to the mountain.\n")
+    print(" ")
+    print("...The Bald Mountain...\n")
     print(first_part)
     while True:
         action = input("Do you want to proceed? type 'Y' or 'N'\n")
@@ -197,6 +200,7 @@ def the_mountain():
             break
     if validate_yes_no(action) == 'yes':
         print(dash_line)
+        print(" ")
         print(middle_part)
         final_fight()
     else:
@@ -236,29 +240,34 @@ def end_game():
     """
     Function to handle the final part of the game
     """
-    print('----------------------------------------------------------------')
-    print('\n')
-    print("Congratulations, you have killed the Troll.")
-    print("Bald Mountain is free again. The mess that the troll and the goblins")
-    print("left behind is huge but now all the mountain folks can at least hope for") 
-    print("a better future while reconstructing their homes and lives.\n")
-    print('----------------------------------------------------------------')
+    end_game_text = data_extractor()
+    end_message = end_game_text["end_game"]
+    dash_line = end_game_text["division_line"]
+    credits = end_game_text["credits"]
+
+    print(dash_line)
+    print(" ")
+    print(end_message)
+    print(" ")
+    print(credits)
+    print(dash_line)
 
 
 def game_over():
     """
     Function to handle the game over
     """
-    print('----------------------------------------------------------------')
-    print("\n")
-    print("You are exhausted and cannot sustain more strikes from the Troll")
-    print("Eventualy the creature hits you with his massive sword.")
-    print("You cannot move anymore and you feel the heat of your body")
-    print("draining out in a puddle of blood")
-    print("\n")
+    data_text = data_extractor()
+    game_over_text = data_text["game_over"]
+    dash_line = data_text["division_line"]
+
+    print(dash_line)
+    print(" ")
+    print(game_over_text)
+    print(" ")
     print("You are dead.")
-    print('----------------------------------------------------------------')
-    print("\n")
+    print(dash_line)
+    print(" ")
 
 
 def fight(player, enemy):
@@ -405,19 +414,24 @@ def the_cave():
     proceed = cave_data["proceed_yes_no"]
     print(dash_line)
     print(' ')
+    print("...The Cave Entrance...\n")
     print(cave_entrance)
-    action = input(proceed)
-    if action == 'Y' or action == 'y':
+    while True:
+        action = input(proceed)
+        if validate_yes_no(action):
+            break
+    if validate_yes_no(action) == 'yes':
         if(player.inventory.get('torch')):
             print(dash_line)
-            print('...entering the cave\n')
+            print(" ")
+            print('...The Cave...\n')
             the_cave_one()
         else:
             print(dash_line)
             print('You can not porceed without a torch.\n')
             print('Going back to the main road...')
             main_road()
-    else:
+    elif validate_yes_no(action) == 'no':
         print('Going back to the main road...\n')
         main_road()
 
@@ -462,7 +476,7 @@ def validate_action_town(action):
         else:
             raise ValueError(f"The input value {action} is not valid")
     except ValueError:
-        print(f"{action} is not valid, please try it again...")
+        print(f"Sorry, {action} is not valid, please try it again...\n")
 
 
 def action_handler_town(action):
@@ -503,10 +517,14 @@ def start_game():
     greetings = history["game_greetings"]
     prologue = history["game_prologue"]
     dash_line = history["division_line"]
+    part_two = history["prologue_part_two"]
+    final_text = history["prologue_final"]
     
     print(dash_line)
     print(greetings)
     print(prologue)
+    print(part_two)
+    print(final_text)
     print(dash_line)
     action = input("Enter any key to continue...\n")
     if action is not None:
@@ -525,10 +543,17 @@ def action_handler_road(action):
         the_mountain()
 
 
-name_player = input("To start the game please enter your name: ")
+print("*******\n")
+print("**** Bald Mountain RPG ******\n")
+print("*******\n")
+while True:
+    name_player = input("To start the game please enter your name: ")
+    if name_player:
+        break
+    else:
+        print(" ")
+        print("You need to enter a name to start the game.\n")
 
 player = Player(name_player)
 player.get_status()
 start_game()
-
-
