@@ -343,9 +343,9 @@ def data_extractor():
         return data_json
     else:
         with open("data/data.json") as data:
-            json_data = json.load(data)
+            data_json = json.load(data)
             data.close()
-            return json_data
+            return data_json
 
 
 def the_tavern():
