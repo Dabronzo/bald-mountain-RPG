@@ -137,8 +137,10 @@ Is called when the player defeats the Troll and finish the game, prints a final 
 
 ## Testing
 The game has been teste manually during all the development process on the local terminal and also on the Heroku hosting.
+- No errors reported on **GitPod**
 - Passed the code through a PEP8 linter and no issues were found
   - Pep8online website for testing http://pep8online.com/
+
 
 ## Bugs
 - During the develpment was noticed that even if the player dies at the final battle the troll also would die. At this point the player was getting confusing messages about if the battle was won or not. The problem was inside of the class enemy, I’ve created a method that used to destroy the object and print a message. This way when in the fight is over if the enemy health is zero or less the method is called, and the object is destroyed, and the message printed. When the player dies the game stops and the enemy type troll is destroyed by that, python destroy the object and because the class has the del method the game was printing the messages. To fix that was added an if statement that checks if the enemy type is troll, being true no message should be printed.
