@@ -255,12 +255,15 @@ def end_game():
     end_message = end_game_text["end_game"]
     dash_line = end_game_text["division_line"]
     credits = end_game_text["credits"]
+    play_again = end_game_text["play_again"]
 
     print(dash_line)
     print(" ")
     print(end_message)
     print(" ")
     print(credits)
+    print(" ")
+    print(play_again)
     print(dash_line)
 
 
@@ -271,14 +274,16 @@ def game_over():
     data_text = data_extractor()
     game_over_text = data_text["game_over"]
     dash_line = data_text["division_line"]
+    play_again = data_text["play_again"]
 
     print(dash_line)
     print(" ")
     print(game_over_text)
     print(" ")
     print("You are dead.")
-    print(dash_line)
     print(" ")
+    print(play_again)
+    print(dash_line)
 
 
 def fight(player, enemy):
