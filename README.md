@@ -4,9 +4,13 @@ Bald Mountain is a small RPG made in Python to run in a terminal. I was inspired
 
 ### Current live version of the game: [Bald Mountain RPG](https://bald-mountain-rpg.herokuapp.com/)
 
+## Live Version Exemple:
+
+![layout](/docs/lay_out.png)
+
 
 ## How to Play
- The game starts asking your name then all your options are printed on the screen as you take decisions. You start in a main road that is close to the Bald Mountain, you have three places to go: the mountain, the village and the cave. To do it so the player need to type a letter that correspond to the place to go. NPC may give the player items that will be stored in your inventory, some places require an item to allow the player to go.  The fight happens automatically, the player always attack first and then the enemy attacks, repeating until the enemy or player dies. After every fight if the player survives the status of the player’s health is printed on the screen. The main objective of the player is killing all the creatures that are spreading fear and death to the mountain.
+ The game starts asking your name then all your options are printed on the screen as you take decisions. You start in a main road that is close to the Bald Mountain, you have three places to go: the mountain, the village and the cave. To do it so the player need to type a letter that correspond to the place to go. Some characters may give the player items that will be stored in your inventory, some places require an item to allow the player to go.  The fight happens automatically, the player always attack first and then the enemy attacks, repeating until the enemy or player dies. After every fight if the player survives the status of the player’s health is printed on the screen. The main objective of the player is killing all the creatures that are spreading fear and death to the mountain.
 
 ## Tecnology Used
 - **Python** 
@@ -19,9 +23,13 @@ Bald Mountain is a small RPG made in Python to run in a terminal. I was inspired
   - Where the project repository is located
 - **GitPod**
   - Used to write and develop the game as IDE
+- **LucidCharts**
+  - Used to make the flowchart. Link to their website: [LucidChart](https://www.lucidchart.com/pages/landing?utm_source=google&utm_medium=cpc&utm_campaign=_chart_en_tier2_mixed_search_brand_exact_&km_CPC_CampaignId=1520850463&km_CPC_AdGroupID=57697288545&km_CPC_Keyword=lucidchart&km_CPC_MatchType=e&km_CPC_ExtensionID=&km_CPC_Network=g&km_CPC_AdPosition=&km_CPC_Creative=442433237648&km_CPC_TargetID=aud-381457345638:kwd-33511936169&km_CPC_Country=9065297&km_CPC_Device=c&km_CPC_placement=&km_CPC_target=&gclid=CjwKCAiA5t-OBhByEiwAhR-hmzeoUQEGtS1zTqvacTUBgPiaGTE6MdDiJyQd-4V6FSOfeReR53VxVhoCWpkQAvD_BwE)
+- **Am I Responsive**
+  - Used to show the layout of the live website. Link to their website: [Am I Rsponsive](http://ami.responsivedesign.is/)
 - **External Content**
   - **Node.JS**
-  - Used the Dockstring template provided by the **Code Institute**
+  - On the template provided by the **Code Institute**
 
 
 ## Flowchart
@@ -105,8 +113,11 @@ The game has been teste manually during all the development process on the local
   - Pep8online website for testing http://pep8online.com/
 
 ## Bugs
+- During the develpment was noticed that even if the player dies at the final battle the troll also would die. At this point the player was getting confusing messages about if the battle was won or not. The problem was inside of the class enemy, I’ve created a method that used to destroy the object and print a message. This way when in the fight is over if the enemy health is zero or less the method is called, and the object is destroyed, and the message printed. When the player dies the game stops and the enemy type troll is destroyed by that, python destroy the object and because the class has the del method the game was printing the messages. To fix that was added an if statement that checks if the enemy type is troll, being true no message should be printed.
 
 ## Unsolved Bugs
+- There are no current unsolved bugs noticed
+
 
 ## Deployment
 This project is deployed on **Heroku** using the **Code Institute's** mock terminal
@@ -116,6 +127,11 @@ This project is deployed on **Heroku** using the **Code Institute's** mock termi
   - Set the buildpacks tp **Python** and **Node.js** in this order
   - Link **Heroku** to the forked or cloned repository
   - Deploy 
+
+## Credits
+- Thanks to **Code Institute** for the template
+- Thanks to my mentor **Brian O'Hare** for the insights and guidance.
+- Thanks my partner at home on taking care of the house duties while I was developing this project.
 
 
 
