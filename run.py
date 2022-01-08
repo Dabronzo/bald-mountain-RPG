@@ -108,24 +108,20 @@ def the_cave_two():
     dash_line = cave_two_data["division_line"]
     print(dash_line)
     print(main_text)
+    print("You can not go back at this point")
+    input("Enter any key to continue")
+    enemy01 = Enemy('goblin', 'sword', 20)
     while True:
-        action = input("Will you fight? type 'Y' or 'N\n")
-        if validate_yes_no(action):
+        if fight(player, enemy01):
             break
-    if validate_yes_no(action) == 'yes':
-        if player.inventory.get('sword'):
-            enemy01 = Enemy('goblin', 'sword', 20)
-            while True:
-                if fight(player, enemy01):
-                    break
-            print(dash_line)
-            print('The fight is over')
-            if enemy01.health <= 0:
-                del enemy01
-                player.get_status()
-                cave_finished()
-            else:
-                game_over()
+    print(dash_line)
+    print('The fight is over')
+    if enemy01.health <= 0:
+        del enemy01
+        player.get_status()
+        cave_finished()
+    else:
+        game_over()
 
 
 def cave_finished():
@@ -186,7 +182,8 @@ def the_cave_one():
             print(dash_line)
             main_road()
     else:
-        print("you ran away")
+        print("You are going back to main road")
+        main_road()
 
 
 def the_mountain():
@@ -312,6 +309,7 @@ def the_inn():
     triggers for new messages
     """
     global visited_inn
+    take_rest = False
     inn_data = data_extractor()
     first_time = inn_data["first_inn"]
     inn_keeper = inn_data["inn_keeper"]
@@ -333,26 +331,37 @@ def the_inn():
             print("After some hours...\n")
             print("Your health is fully restored.\n")
             player.health = 100
+            take_rest = True
+            exit_inn()
         else:
             print(dash_line)
             print("You'll be back on the town")
             the_town()
-    if visited_inn is False:
+    elif visited_inn is False:
         print(first_time)
         print(inn_keeper)
         player.add_to_inventory('sword', 30)
         print(dash_line)
+        visited_inn = True
+        exit_inn()
     elif visited_inn and not change_inn:
         print(second_time)
         print(dash_line)
-    elif visited_inn and change_inn:
+        exit_inn()
+    elif visited_inn and take_rest:
         print(inn_after)
         print(" ")
+        exit_inn()
+   
+
+def exit_inn():
+    """
+    Funtion to handle the exit of the inn
+    """
     while True:
         print("Seams that you have nothing else to do here...")
         input("Press any key to go back to the village center\n")
         break
-    visited_inn = True
     the_town()
 
 
@@ -441,6 +450,7 @@ def the_cave():
     Check if player has a torch and calls the next
     cave function
     """
+    global change_inn
     cave_data = data_extractor()
     dash_line = cave_data["division_line"]
     cave_entrance = cave_data["cave_entrance"]
@@ -448,25 +458,33 @@ def the_cave():
     print(dash_line)
     print(' ')
     print("...The Cave Entrance...\n")
-    print(cave_entrance)
-    while True:
-        action = input(proceed)
-        if validate_yes_no(action):
-            break
-    if validate_yes_no(action) == 'yes':
-        if(player.inventory.get('torch')):
-            print(dash_line)
-            print(" ")
-            print('...The Cave...\n')
-            the_cave_one()
-        else:
-            print(dash_line)
-            print('You can not porceed without a torch.\n')
-            print('Going back to the main road...')
-            main_road()
-    elif validate_yes_no(action) == 'no':
-        print('Going back to the main road...\n')
+    if change_inn:
+        print(" ")
+        print("The cave is empty now...")
+        print(" ")
+        print(dash_line)
+        input("Enter any key to go back to main road.")
         main_road()
+    else:
+        print(cave_entrance)
+        while True:
+            action = input(proceed)
+            if validate_yes_no(action):
+                break
+        if validate_yes_no(action) == 'yes':
+            if player.inventory.get('torch'):
+                print(dash_line)
+                print(" ")
+                print('...The Cave...\n')
+                the_cave_one()
+            else:
+                print(dash_line)
+                print('You can not porceed without a torch.\n')
+                print('Going back to the main road...')
+                main_road()
+        elif validate_yes_no(action) == 'no':
+            print('Going back to the main road...\n')
+            main_road()
 
 
 def main_road():
